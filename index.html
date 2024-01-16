@@ -1,22 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&amp;family=Urbanist&amp;display=swap" rel="stylesheet">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <style>
+        #banner{
+            position:absolute;
+            display:none;
+            justify-content: start;
+            align-items: center;
+            z-index: 2;
+            width:100%;
+            font-family: 'Abril Fatface', serif;
+            color: #473198;
+            font-size: 4.5rem;
+            margin: 0;
+            padding: 0;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: .2rem;
+            height:100vh;
+            margin-left:3em;
+            margin-top:-2em;
+        }
+    </style>
+  </head>
+  <body>
+    <a-scene style="position:absolute; z-index:0">
+        <a-assets>
+            <a-asset-item id="dance_glb" src="./model/Breakdance Ending 1.fbx.glb"></a-asset-item>
+          </a-assets>
 
-    <div class="w-full h-screen flex justify-center items-center">
+          <a-entity animation="property:rotation; from: 0 0 0; to: 0 360 0; dur: 5000; easing:linear; loop:true;">
+            <a-entity light="type: spot; intensity: 15; distance: 50; decay: 1; castShadow: true; color: #473198; target: #solomon; angle: 15; penumbra: 0" position="0 6 15"></a-entity>
+            <a-entity light="type: spot; intensity: 15; distance: 50; decay: 1; castShadow: true; color: #473198; target: #solomon; angle: 15; penumbra: 0" position="0 6 -15"></a-entity>
+          </a-entity>
 
-        <div class="space-y-3 font-mono">
-            <div class="text-2xl">Rogier Jupijn</div>
-            <div class="text-md">Educator and creative engineer</div>
-        </div>
-       
+          
+          <a-entity position="0 0 -3">
+            <a-entity animation-mixer id="solomon"  shadow="receive: true" shadow position="0 0 1" scale="0.002 0.002 0.002" gltf-model="#dance_glb" ></a-entity>
+            <a-plane shadow position="0 0 0" rotation="-90 0 0" width="700" height="700" color="#ffffff"></a-plane>
+          </a-entity>
 
+          <!-- <a-entity scale="15 15 15" position="4 2 -3.5">
+            <a-entity scale="1 1 1" position="0 0.05 0" text="value: Nordic Fablab; align:left; color:#473198;;"></a-entity>
+            <a-entity scale="1 1 1" position="0 0 0" text="value: Bootcamp 2024; align:left; color:#473198;"></a-entity>
+          </a-entity> -->
+          
+
+          <a-image scale="0.04 0.04 0.04" width="120" height="35" position="-0.7 2 -3" src="./text.png"></a-image>
+
+
+        
+          <a-entity light="type: ambient; intensity: 1; distance: 50; decay: 2; color: #C7F1B9;" position="0 3 -5"></a-entity>
+
+          
+      <a-sky color="#C7F1B9"></a-sky>
+    </a-scene>
+
+    <div id="banner">
+        Nordic Fablab
+        <br>
+        Bootcamp 2024
     </div>
-    
-</body>
+  </body>
 </html>
