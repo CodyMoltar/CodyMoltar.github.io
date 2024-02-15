@@ -67,3 +67,28 @@ AFRAME.registerComponent('click-listener', {
     }
 
 });
+
+AFRAME.registerComponent('loadmodels', {
+    schema: {
+        models: {default:[]}
+    },
+
+    init: function(){
+
+        this.scale = 0.002
+        
+        this.models = this.data.models;
+
+        if(this.models.length != 0){
+            
+            this.models.forEach(model => {
+                
+                
+
+            });
+
+        }
+
+    }
+})
+

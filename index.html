@@ -4,12 +4,23 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
     <script src="script.js"></script>
+    <style>
+
+      #interface{
+        position:absolute;
+        top:0;
+        left:0;
+        margin:1em;
+        padding:1em;
+        border:1px solid black;
+        background:rgba(255,255,255,0.5)
+      }
+
+    </style>
   </head>
   <body>
-    <a-scene style="position:absolute; z-index:0">
-        <a-assets>
-            <a-asset-item id="dance_glb" src="./media/Breakdance Ending 1.fbx.glb"></a-asset-item>
-          </a-assets>
+    <a-scene xr-mode-ui>
+        
 
           <a-entity animation="property:rotation; from: 0 0 0; to: 0 360 0; dur: 5000; easing:linear; loop:true;">
             <a-entity light="type: spot; intensity: 15; distance: 50; decay: 1; castShadow: true; color: #473198; target: #solomon; angle: 15; penumbra: 0" position="0 6 15"></a-entity>
@@ -17,15 +28,17 @@
           </a-entity>
 
           
-          <a-box shadow position="0 1 0" width="2" height="2" depth="2"></a-box>
+          <!-- <a-box shadow position="0 1 0" width="2" height="2" depth="2"></a-box> -->
+
+          <a-entity id="container"></a-entity>
 
           
           <a-entity visible="false" position="0 0 -3">
-            <a-entity  animation-mixer id="solomon"  shadow="receive: true" shadow position="0 0 1" scale="0.002 0.002 0.002" gltf-model="#dance_glb" ></a-entity>
+            <a-entity  animation-mixer="loop: pingpong; timeScale:0.01" id="solomon"  shadow="receive: true" shadow position="0 0 1" scale="0.002 0.002 0.002" gltf-model="#dance_glb" ></a-entity>
             <a-plane shadow position="0 0 0" rotation="-90 0 0" width="700" height="700" color="#ffffff"></a-plane>
           </a-entity>
 
-          <a-image scale="0.04 0.04 0.04" width="120" height="35" position="-0.7 2 -3" src="./media/text.png"></a-image>
+          <a-image visible="false" scale="0.04 0.04 0.04" width="120" height="35" position="-0.7 2 -3" src="./media/text.png"></a-image>
 
           <a-entity light="type: ambient; intensity: 1; distance: 50; decay: 2; color: #C7F1B9;" position="0 3 -5"></a-entity>
 
@@ -33,6 +46,47 @@
       <a-sky color="#C7F1B9"></a-sky>
 
     </a-scene>
+
+    <div id="interface">
+
+      <button id="addModel">add solomon</button>
+      
+    </div>
+
+    <script>
+
+const button = document.querySelector('#addModel');
+const container = document.querySelector('#container');
+const scale = 0.002
+
+console.log(container);
+
+    button.addEventListener('click', ()=>{
+        console.log('hi');
+
+        let entity = document.createElement('a-entity');
+        entity.setAttribute('animation-mixer', {
+            loop: 'pingpong',
+            timeScale: 0.1
+        });
+        entity.setAttribute('shadow', '');
+        entity.setAttribute('gltf-model', './models/' + 'solomon' + '.glb');
+        entity.setAttribute('position', {
+            x: 0,
+            y: 0,
+            z: -3
+        });
+        entity.setAttribute(  'scale', {
+            x: scale,
+            y: scale,
+            z: scale
+        });
+
+        container.appendChild(entity)
+
+    })
+
+    </script>
 
   </body>
 </html>
