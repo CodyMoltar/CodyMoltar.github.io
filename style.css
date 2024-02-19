@@ -1,0 +1,36 @@
+/* h1{
+    color:brown;
+    text-decoration: line-through;
+    font-size: 40px;
+    transition:all 1s;
+}
+
+h1:hover{
+    font-size:140px;
+    color: green;
+    transform: rotate(180deg)
+} */
+
+#outer{
+    height:300px;
+    background:hotpink;
+}
+
+/* CSS BOX MODEL */
+
+#inner{
+    height:50%;
+    width:50%;
+    background:green;
+    padding:20px;
+    border:4px solid black;
+    margin:30px;
+
+    
+        font-size: 3em; /* Adjust the font size as needed */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a shadow to create a 3D effect */
+        transform: skew(-10deg, 0); /* Skew the text to add a 3D perspective */
+    
+    
+
+}
