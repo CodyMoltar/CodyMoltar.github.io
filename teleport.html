@@ -10,8 +10,16 @@
     <body>
         <a-scene>
             <a-entity camera look-controls>
-                <a-entity id="leftHand" hand-controls="left"></a-entity>
-                <a-entity id="rightHand" hand-controls="right"></a-entity>
+                <a-entity
+                    id="leftHand"
+                    hand-controls="left"
+                    teleport-controls="button: trigger; type: parabolic;"
+                ></a-entity>
+                <a-entity
+                    id="rightHand"
+                    hand-controls="right"
+                    teleport-controls="button: trigger; type: parabolic;"
+                ></a-entity>
             </a-entity>
 
             <a-box
