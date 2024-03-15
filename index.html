@@ -8,13 +8,27 @@
     </head>
     <body>
         <a-scene>
-            <a-sphere radius="1" position="0 1.6 -3"></a-sphere>
+            <!-- ADDED A CAMERA HERE -->
+            <a-entity>
+                <a-entity
+                    wasd-controls="acceleration: 10"
+                    look-controls
+                    position="0 1.6 0"
+                    camera
+                ></a-entity>
+            </a-entity>
+
+            <a-image src="./cat.jpg" position="0 1.5 -2"></a-image>
+            <a-video src="./cat.mp4" position="2 1.5 -2"></a-video>
+            <a-sound
+                src="src: url(./sound.wav)"
+                position=" -2 1.5 -2"
+                autoplay="true"
+                loop="true"
+                volume="0.1"
+            ></a-sound>
 
             <a-sky color="#ECECEC"></a-sky>
         </a-scene>
     </body>
-
-    <script>
-        console.log(THREE.Cache);
-    </script>
 </html>
