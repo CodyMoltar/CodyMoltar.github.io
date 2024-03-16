@@ -5,28 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
     </head>
     <body>
         <a-scene>
+            <a-assets>
+                <img id="cat-image" src="./cat.jpg" alt="" />
+                <a-asset-item
+                    id="catmodel"
+                    src="./little_cat.glb"
+                ></a-asset-item>
+            </a-assets>
+
             <!-- ADDED A CAMERA HERE -->
             <a-entity>
                 <a-entity
-                    wasd-controls="acceleration: 10"
+                    camera
                     look-controls
                     position="0 1.6 0"
-                    camera
+                    wasd-controls
                 ></a-entity>
             </a-entity>
 
-            <a-image src="./cat.jpg" position="0 1.5 -2"></a-image>
-            <a-video src="./cat.mp4" position="2 1.5 -2"></a-video>
+            <a-entity
+                position="0 0 -5"
+                scale="10 10 10"
+                gltf-model="#catmodel"
+                animation-mixer
+            ></a-entity>
+
+            <!-- <a-sphere position="-2 1.5 -2" src="#cat-image"></a-sphere>
+            <a-sphere position="-3 1.5 -2" src="#cat-image"></a-sphere>
+            <a-sphere position="-4 1.5 -2" src="#cat-image"></a-sphere>
+            <a-sphere position="-5 1.5 -2" src="#cat-image"></a-sphere>
+            <a-sphere position="-2 1.5 -1" src="#cat-image"></a-sphere>
+            <a-sphere position="-2 1.5 -0" src="#cat-image"></a-sphere>
+            <a-sphere position="-2 1.5 1" src="#cat-image"></a-sphere> -->
+
+            <!-- <a-image src="#cat-image" position="0 1.5 -2"></a-image>
+            <a-video
+                width="1.6"
+                height="0.9"
+                src="./cat.mp4"
+                position="2 1.5 -30"
+                scale="10 10 10"
+            ></a-video>
             <a-sound
                 src="src: url(./sound.wav)"
                 position=" -2 1.5 -2"
                 autoplay="true"
                 loop="true"
                 volume="0.1"
-            ></a-sound>
+            ></a-sound> -->
 
             <a-sky color="#ECECEC"></a-sky>
         </a-scene>
