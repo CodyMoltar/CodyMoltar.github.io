@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.5.0/dist/aframe-cursor-teleport-component.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <!-- Camera rig + cursor teleport + blink controls -->
+            <a-entity
+                id="cameraRig"
+                cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable"
+            >
+                <a-entity
+                    id="head"
+                    position="0 1.52 0"
+                    camera
+                    look-controls="reverseMouseDrag: true"
+                ></a-entity>
+                <a-entity
+                    laser-controls="hand: left"
+                    raycaster="objects: .clickable; far: 100"
+                    line="color: red; opacity: 0.75"
+                    blink-controls="cameraRig: #cameraRig; teleportOrigin: #head;"
+                ></a-entity>
+                <a-entity
+                    laser-controls="hand: right"
+                    raycaster="objects: .clickable"
+                    line="color: red; opacity: 0.75"
+                    blink-controls="cameraRig: #cameraRig; teleportOrigin: #head;"
+                ></a-entity>
+            </a-entity>
+
+            <!-- collidable entity -->
+            <a-entity
+                class="collision"
+                position="0 -.05 0"
+                geometry="primitive: box; width: 8; height: .1; depth: 8"
+            ></a-entity>
+
+            <a-assets>
+                <video
+                    id="example"
+                    autoplay
+                    loop="true"
+                    src="./video.mp4"
+                ></video>
+            </a-assets>
+
+            <a-videosphere
+                position="0 1.6 -3"
+                radius="1"
+                src="#example"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;"
+            ></a-videosphere>
+        </a-scene>
+    </body>
+</html>
