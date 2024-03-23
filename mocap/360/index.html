@@ -1,11 +1,21 @@
 <html>
     <head>
         <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.5.0/dist/aframe-cursor-teleport-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
     </head>
     <body>
         <a-scene>
+            <!-- ASSETS -->
+            <a-assets>
+                <video src="./video.mp4" id="example"></video>
+                <a-asset-item
+                    id="walking-cat"
+                    src="./WALKING-CAT.glb"
+                ></a-asset-item>
+            </a-assets>
+
             <!-- Camera rig + cursor teleport + blink controls -->
             <a-entity
                 id="cameraRig"
@@ -31,28 +41,45 @@
                 ></a-entity>
             </a-entity>
 
-            <!-- collidable entity -->
+            <!-- walking cat entity -->
+            <a-entity
+                class="collision"
+                position="0 -.05 -10"
+                geometry="primitive: box; width: 8; height: .1; depth: 8"
+            >
+                <a-entity
+                    gltf-model="#walking-cat"
+                    animation-mixer
+                    scale="0.240 0.240 0.240"
+                ></a-entity>
+            </a-entity>
+
+            <a-entity
+                class="collision"
+                position="10 -.05 0"
+                geometry="primitive: box; width: 8; height: .1; depth: 8"
+            >
+                <a-videosphere
+                    position="0 1.6 0"
+                    radius="1"
+                    src="#example"
+                    animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;"
+                ></a-videosphere>
+            </a-entity>
+
+            <a-entity
+                class="collision"
+                position="10 -.05 -10"
+                geometry="primitive: box; width: 8; height: .1; depth: 8"
+            >
+            </a-entity>
+
             <a-entity
                 class="collision"
                 position="0 -.05 0"
                 geometry="primitive: box; width: 8; height: .1; depth: 8"
-            ></a-entity>
-
-            <a-assets>
-                <video
-                    id="example"
-                    autoplay
-                    loop="true"
-                    src="./video.mp4"
-                ></video>
-            </a-assets>
-
-            <a-videosphere
-                position="0 1.6 -3"
-                radius="1"
-                src="#example"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;"
-            ></a-videosphere>
+            >
+            </a-entity>
         </a-scene>
     </body>
 </html>
